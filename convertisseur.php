@@ -9,6 +9,11 @@
 <body>
 
 <?php
+$valdeci=null;
+$valbinary=null;
+$valhexa=null;
+$erreur="";
+
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     // Récupération des données
     $deci = filter_input(INPUT_POST, 'déci', FILTER_VALIDATE_INT);
@@ -20,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     //erreur d'entrée
     if(!$deci && !$binaire && !$hexa){
         $erreur=true;
-        $message .=" Vous devez rentrer une valeur valide pour la convertir <br>";
+        $message .="<p> Vous devez rentrer une valeur valide pour la convertir </p>";
         
     }
 
@@ -49,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         $valhexa = $hexa;
     }
     function comparer(){
-        global $erreur,$message,$deci, $binaire, $hexa, $valdeci, $valbinary, $valhexa;
+        global $deci, $binaire, $hexa;
         if(decbin($deci)===$binaire){
             hexa();
         }elseif(dechex($deci)===$hexa){
